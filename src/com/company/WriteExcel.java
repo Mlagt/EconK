@@ -13,7 +13,7 @@ public class WriteExcel {
 
     public static void main(String[] args) throws IOException {
         Workbook wb = new XSSFWorkbook();
-        FileOutputStream fileOut = new FileOutputStream("D:\\project\\demo.xlsx");
+        FileOutputStream fileOut = new FileOutputStream("E:\\project\\demo.xlsx");
 
         Sheet sheet = wb.createSheet("Издатели");
         Row row = sheet.createRow(3);
