@@ -47,8 +47,8 @@ public class FirstSection {
             k++;
         }
         incomePlanedInvest =  workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();
-        incomePlanedFinance    = workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();
-        incomeFromOtherCurrentActivities = workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();
+        incomePlanedFinance    = workbook.getSheetAt(0).getRow(k+1).getCell(variant+1).getNumericCellValue();
+        incomeFromOtherCurrentActivities = workbook.getSheetAt(0).getRow(k+2).getCell(variant+1).getNumericCellValue();
         System.out.println(incomePlanedInvest+" "+incomePlanedFinance +" "+incomeFromOtherCurrentActivities);// проверка данных
     }
 }
