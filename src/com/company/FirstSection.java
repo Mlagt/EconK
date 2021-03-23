@@ -37,12 +37,10 @@ public class FirstSection {
         XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
         XSSFSheet sheet = workbook.getSheetAt(0);
         Row row = sheet.createRow(variant+1);
-        Cell cell;
-        for(int i=0;i<4;i++){
-            cell = row.getCell(k);
-            proceedsImplementation[i] = cell.getNumericCellValue();
+        for(int i=0;i<6;i++){
+            proceedsImplementation[i] = workbook.getSheetAt(0).getRow(3).getCell(k).getNumericCellValue();
             k++;
-       }
+        }
 
         for (int i=0;i<proceedsImplementation.length;i++)
         System.out.println(proceedsImplementation[i]);
