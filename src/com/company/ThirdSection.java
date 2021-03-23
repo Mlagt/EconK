@@ -45,7 +45,7 @@ public class ThirdSection {
         socialContributions = laborCosts*34/100;       //ОСН
         for (int i=0;i<depreciationNorm.length;i++){
             depreciationNorm[i]=round(1/usefulLife[i]*100,2);
-            depreciationDivided[i]=secondSection.fixedAssetsDivided[i]*depreciationNorm[i]/100;
+            depreciationDivided[i]=secondSection.fixedAssetsDividedPlanned[i]*depreciationNorm[i]/100;
             depreciationAmount+=depreciationDivided[i]; //А
         }
         for (int i=0;i<materialCostsCurrentYear.length;i++){
