@@ -1,7 +1,6 @@
 package com.company;
 
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -18,9 +17,19 @@ public class FirstSection {
     double incomeFromOtherCurrentActivities, incomePlanedInvest, incomePlanedFinance;
     //Переменные в ответе
     double proceedsPlaned; // Выручка планируемая
-    double[] proceedsDivided = new double[6];
+    double[] proceedsDividedPlanned = new double[6];
+    double[] proceedsDividedCurrent = new double[6];
     double incomePlaned, incomePlanedCurrentActivities; //Доход планируемый
     double[] incomePercentage = new double[6];
+
+    public void firstSection(String[] args){
+        for (int i =0; i<6; i++){
+            proceedsDividedPlanned[i] = (proceedsDividedCurrent[i] * (100 + plannedIncrease[i]))/100;
+            incomePlaned += proceedsDividedPlanned[i];
+        }
+        incomePlanedCurrentActivities = proceedsPlaned + incomeFromOtherCurrentActivities;
+        incomePlaned = incomePlanedCurrentActivities + incomePlanedInvest + incomePlanedFinance;
+    }
 
     public void Initialization(String pathname,int variant) throws IOException {
         int k=3;//положение колонки с которой идут цифры в методичке
