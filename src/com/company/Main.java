@@ -14,5 +14,6 @@ public class Main {
 
         FirstSection firstSection = new FirstSection();
         firstSection.Initialization(path,vatiant);
+
     }
 }
