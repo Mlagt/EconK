@@ -1,7 +1,5 @@
 package com.company;
 
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
@@ -25,7 +23,7 @@ public class FirstSection {
     public void firstSection(String[] args){
         for (int i =0; i<6; i++){
             proceedsDividedPlanned[i] = (proceedsDividedCurrent[i] * (100 + plannedIncrease[i]))/100;
-            incomePlaned += proceedsDividedPlanned[i];
+            proceedsPlaned += proceedsDividedPlanned[i];
         }
         incomePlanedCurrentActivities = proceedsPlaned + incomeFromOtherCurrentActivities;
         incomePlaned = incomePlanedCurrentActivities + incomePlanedInvest + incomePlanedFinance;
