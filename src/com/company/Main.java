@@ -17,7 +17,9 @@ public class Main {
         SecondSection secondSection = new SecondSection();
        // secondSection.Initialization(path,variant);
         ThirdSection thirdSection = new ThirdSection();
-        thirdSection.Initialization(path,variant);
+       // thirdSection.Initialization(path,variant);
+        ForthSection forthSection = new ForthSection();
+       //forthSection.Initialization(path,variant);
 
     }
 }

@@ -53,7 +53,7 @@ public class ThirdSection {
             materialContributionsDivided[i]=materialContributions100[i]*firstSection.proceedsPlaned/100;
             materialContributionsAmount+=materialContributionsDivided[i]; //MЗ
         }
-        otherCostsPlaned = round((laborCosts+socialContributions+depreciationAmount+materialContributionsAmount)*8/92,2);
+        otherCostsPlaned = round((laborCosts+socialContributions+depreciationAmount+materialContributionsAmount)*8/92,2);//ПР
         costsAmount = laborCosts+socialContributions+depreciationAmount+materialContributionsAmount+otherCostsPlaned; //З
         costPrice100=costsAmount/firstSection.proceedsPlaned*100;
 
