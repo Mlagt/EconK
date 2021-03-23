@@ -5,8 +5,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class FirstSection {
     private static double round(double value, int places) {
@@ -41,7 +39,7 @@ public class FirstSection {
             incomePercentage[i] = round((proceedsDividedPlanned[i]/proceedsPlaned*100*100)/100, 2) ;
         }
 
-        //System.out.println("proceedsPlaned= "+proceedsPlaned+"\tincomePlaned= "+incomePlaned+"\tincomePlanedCurrentActivities"+incomePlanedCurrentActivities);
+        System.out.println("proceedsPlaned = "+proceedsPlaned+"\tincomePlaned = "+incomePlaned+"\tincomePlanedCurrentActivities = "+incomePlanedCurrentActivities);
         System.out.print("proceedsDividedPlanned= ");
         for (int i=0;i<proceedsDividedPlanned.length;i++) System.out.print(proceedsDividedPlanned[i]+" ");
         System.out.println("");
@@ -60,20 +58,20 @@ public class FirstSection {
         System.out.println("sgserg");
         for(int i=0;i<6;i++){
            // System.out.println(workbook.getSheetAt(0).getRow(k).getCell(variant+2).getStringCellValue());
-            proceedsDividedCurrent[i] = workbook.getSheetAt(0).getRow(k).getCell(variant+2).getNumericCellValue();
-           System.out.println(workbook.getSheetAt(0).getRow(k).getCell(variant+2).getNumericCellValue()); //проверка данных
+            proceedsDividedCurrent[i] = workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();
+           System.out.println(workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue()); //проверка данных
             k++;
         }
+        k++;
         for(int i=0;i<6;i++){
-            plannedIncrease[i] = workbook.getSheetAt(0).getRow(k).getCell(variant+2).getNumericCellValue();
+            plannedIncrease[i] = workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();
           System.out.println(plannedIncrease[i]); // проверка данных
             k++;
         }
-        incomePlanedInvest =  workbook.getSheetAt(0).getRow(k).getCell(variant+2).getNumericCellValue();
-        incomePlanedFinance    = workbook.getSheetAt(0).getRow(k+1).getCell(variant+2).getNumericCellValue();
-        incomeFromOtherCurrentActivities = workbook.getSheetAt(0).getRow(k+2).getCell(variant+2).getNumericCellValue();
-        System.out.println(incomePlanedInvest+" "+incomePlanedFinance +" "+incomeFromOtherCurrentActivities);
-        // проверка данных
+        incomePlanedInvest =  workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();
+        incomePlanedFinance    = workbook.getSheetAt(0).getRow(k+1).getCell(variant+1).getNumericCellValue();
+        incomeFromOtherCurrentActivities = workbook.getSheetAt(0).getRow(k+2).getCell(variant+1).getNumericCellValue();
+        System.out.println(incomePlanedInvest+" "+incomePlanedFinance +" "+incomeFromOtherCurrentActivities);// проверка данных
         firstSection();
 
     }

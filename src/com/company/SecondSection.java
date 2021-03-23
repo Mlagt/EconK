@@ -7,6 +7,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class SecondSection {
+    //переменные из методички
+    osCost
     //Переменные второго раздела
     double fixedAssetsPlaned, fixedAssetsThisYear, fixedAssetsNextYear, fixedAssetsInput, fixedAssetsOutput;
     double[] fixedAssetsDivided = new double[6];
