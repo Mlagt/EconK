@@ -33,3 +33,5 @@ public class SecondSection {
         // System.out.println(incomePlanedInvest+" "+incomePlanedFinance +" "+incomeFromOtherCurrentActivities); проверка данных
     }
 }
+
+
