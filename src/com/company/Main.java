@@ -15,6 +15,6 @@ public class Main {
         //for (int i=0;i<exel.number.length;i++) System.out.print(exel.number[i]+" ");
 
         FirstSection firstSection = new FirstSection();
-        firstSection.Initialization("D:\\Java\\File\\Data.xlsx",1);
+        firstSection.Initialization("D:\\Java\\File\\Data.xlsx",2);
     }
 }

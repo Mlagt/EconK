@@ -35,15 +35,20 @@ public class FirstSection {
         int k=3;//положение колонки с которой идут цифры в методичке
         FileInputStream inputStream = new FileInputStream(new File(pathname));
         XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
-        XSSFSheet sheet = workbook.getSheetAt(0);
-        Row row = sheet.createRow(variant+1);
         for(int i=0;i<6;i++){
-            proceedsImplementation[i] = workbook.getSheetAt(0).getRow(3).getCell(k).getNumericCellValue();
+            proceedsImplementation[i] = workbook.getSheetAt(0).getRow(variant+2).getCell(k).getNumericCellValue();
+           // System.out.println(proceedsImplementation[i]); проверка данных
             k++;
         }
-
-        for (int i=0;i<proceedsImplementation.length;i++)
-        System.out.println(proceedsImplementation[i]);
-
+        k++;
+        for(int i=0;i<6;i++){
+            plannedIncrease[i] = workbook.getSheetAt(0).getRow(variant+2).getCell(k).getNumericCellValue();
+          //  System.out.println(plannedIncrease[i]);  проверка данных
+            k++;
+        }
+        incomePlanedInvest =  workbook.getSheetAt(0).getRow(variant+2).getCell(k).getNumericCellValue();
+        incomePlanedFinance    = workbook.getSheetAt(0).getRow(variant+2).getCell(k+1).getNumericCellValue();
+        incomeFromOtherCurrentActivities = workbook.getSheetAt(0).getRow(variant+2).getCell(k+2).getNumericCellValue();
+       // System.out.println(incomePlanedInvest+" "+incomePlanedFinance +" "+incomeFromOtherCurrentActivities); проверка данных
     }
 }
