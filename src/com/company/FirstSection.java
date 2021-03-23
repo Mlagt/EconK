@@ -1,6 +1,5 @@
 package com.company;
 
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -15,10 +14,11 @@ public class FirstSection {
     double[] proceedsImplementation = new double[6];
     double[] plannedIncrease = new double[6];
     double incomeFromOtherCurrentActivities, incomePlanedInvest, incomePlanedFinance;
+    double[] proceedsDividedCurrent = new double[6];
     //Переменные в ответе
     double proceedsPlaned; // Выручка планируемая
     double[] proceedsDividedPlanned = new double[6];
-    double[] proceedsDividedCurrent = new double[6];
+
     double incomePlaned, incomePlanedCurrentActivities; //Доход планируемый
     double[] incomePercentage = new double[6];
 
@@ -29,6 +29,9 @@ public class FirstSection {
         }
         incomePlanedCurrentActivities = proceedsPlaned + incomeFromOtherCurrentActivities;
         incomePlaned = incomePlanedCurrentActivities + incomePlanedInvest + incomePlanedFinance;
+        for (int i =0; i<6; i++){
+            incomePercentage[i] = proceedsDividedCurrent[i]/incomePlaned;
+        }
     }
 
     public void Initialization(String pathname,int variant) throws IOException {
