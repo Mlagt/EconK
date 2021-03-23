@@ -28,7 +28,7 @@ public class FirstSection {
         incomePlanedCurrentActivities = proceedsPlaned + incomeFromOtherCurrentActivities;
         incomePlaned = incomePlanedCurrentActivities + incomePlanedInvest + incomePlanedFinance;
         for (int i =0; i<6; i++){
-            incomePercentage[i] = proceedsDividedCurrent[i]/incomePlaned*100;
+            incomePercentage[i] = Math.round(proceedsDividedPlanned[i]/proceedsPlaned*100*100)/100 ;
         }
 
         System.out.println("proceedsPlaned= "+proceedsPlaned+"\tincomePlaned= "+incomePlaned+"\tincomePlanedCurrentActivities"+incomePlanedCurrentActivities);
@@ -44,9 +44,14 @@ public class FirstSection {
         int k=3;//положение колонки с которой идут цифры в методичке
         FileInputStream inputStream = new FileInputStream(new File(pathname));
         XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
+        System.out.println(workbook.getSheetAt(0).getRow(3).getCell(3).getNumericCellValue());
+        System.out.println(workbook.getSheetAt(0).getRow(3).getCell(4).getStringCellValue());
+        System.out.println(workbook.getSheetAt(0).getRow(3).getCell(5).getStringCellValue());
+        System.out.println("sgserg");
         for(int i=0;i<6;i++){
+           // System.out.println(workbook.getSheetAt(0).getRow(k).getCell(variant+2).getStringCellValue());
             proceedsDividedCurrent[i] = workbook.getSheetAt(0).getRow(k).getCell(variant+2).getNumericCellValue();
-           System.out.println(proceedsDividedCurrent[i]); //проверка данных
+           System.out.println(workbook.getSheetAt(0).getRow(k).getCell(variant+2).getNumericCellValue()); //проверка данных
             k++;
         }
         k++;
