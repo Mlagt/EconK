@@ -29,7 +29,7 @@ public class FirstSection {
     double incomePlaned=1, incomePlanedCurrentActivities=1; //Доход планируемый
     double[] incomePercentage = new double[]{ 1, 1, 1, 1,1,1 };
 
-    public void firstSection(){
+    public void Calculation(){
         for (int i =0; i<6; i++){
             proceedsDividedPlanned[i] = ((proceedsDividedCurrent[i] * (100 + plannedIncrease[i])/100));
             proceedsDividedPlanned[i] = round(proceedsDividedPlanned[i], 2);
@@ -73,8 +73,8 @@ public class FirstSection {
         incomePlanedInvest =  workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();
         incomePlanedFinance    = workbook.getSheetAt(0).getRow(k+1).getCell(variant+1).getNumericCellValue();
         incomeFromOtherCurrentActivities = workbook.getSheetAt(0).getRow(k+2).getCell(variant+1).getNumericCellValue();
-        System.out.println(incomePlanedInvest+" "+incomePlanedFinance +" "+incomeFromOtherCurrentActivities);// проверка данных
-        firstSection();
+        System.out.println(incomePlanedInvest+" "+incomePlanedFinance +" "+incomeFromOtherCurrentActivities+" k = "+k);// проверка данных
+        Calculation();
 
     }
 }

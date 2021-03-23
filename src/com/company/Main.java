@@ -5,7 +5,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        String path = "D:\\Java\\File\\Data3.xlsx";
+        String path = "D:\\Java\\File\\Data1.xlsx";
         int variant = 2;
 
 
@@ -14,6 +14,7 @@ public class Main {
 
         FirstSection firstSection = new FirstSection();
         firstSection.Initialization(path,variant);
-
+        SecondSection secondSection = new SecondSection();
+        secondSection.Initialization(path,variant);
     }
 }
