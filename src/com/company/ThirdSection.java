@@ -2,16 +2,16 @@ package com.company;
 
 public class ThirdSection {
     //Переменные третьего раздела
-    double LaborCosts, PeoplePlaned, PeopleCurrent, SalaryPlaned, SalaryCurrent, SalaryGrowth;
-    double SocialContributions, RateSocialContributions = 34;
-    double DepreciationAmount;
-    double[] DepreciationNorm = new double[6];
-    double[] DepreciationDivided = new double[6];
-    double MaterialContributions100Planned, MaterialContributions100Current;
-    double[] MaterialContributions100 = new double[3];
-    double[] MaterialContributionsDivided = new double[3];
-    double MaterialContributionsAmount;
-    double OtherCostsPlaned, CostsAmount, CostPrice100;
-    double[] CostsAmountDivided = new double[6];
-    double[] CostPrice100Divided = new double[6];
+    double laborCosts, peoplePlaned, peopleCurrent, salaryPlaned, salaryCurrent, salaryGrowth;
+    double socialContributions, rateSocialContributions = 34;
+    double depreciationAmount;
+    double[] depreciationNorm = new double[6];
+    double[] depreciationDivided = new double[6];
+    double materialContributions100Planned, materialContributions100Current;
+    double[] materialContributions100 = new double[3];
+    double[] materialContributionsDivided = new double[3];
+    double materialContributionsAmount;
+    double otherCostsPlaned, costsAmount, costPrice100;
+    double[] costsAmountDivided = new double[6];
+    double[] costPrice100Divided = new double[6];
 }

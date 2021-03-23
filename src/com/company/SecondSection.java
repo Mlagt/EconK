@@ -2,7 +2,7 @@ package com.company;
 
 public class SecondSection {
     //Переменные второго раздела
-    double FixedAssetsPlaned, FixedAssetsThisYear, FixedAssetsNextYear, FixedAssetsInput, FixedAssetsOutput;
-    double[] FixedAssetsDivided = new double[6];
-    double[] FixedAssetsMonth = new double[11];
+    double fixedAssetsPlaned, fixedAssetsThisYear, fixedAssetsNextYear, fixedAssetsInput, fixedAssetsOutput;
+    double[] fixedAssetsDivided = new double[6];
+    double[] fixedAssetsMonth = new double[11];
 }
