@@ -8,12 +8,12 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class FirstSection {
-    private static double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
+class FirstSection {
+    private static double round(double value) {
+        if (2 < 0) throw new IllegalArgumentException();
 
         BigDecimal bd = new BigDecimal(Double.toString(value));
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
     //Переменные первого раздела
@@ -23,34 +23,35 @@ public class FirstSection {
     double incomeFromOtherCurrentActivities, incomePlanedInvest, incomePlanedFinance;
     double[] proceedsDividedCurrent = new double[6];
     //Переменные в ответе
-    double proceedsPlaned=1; // Выручка планируемая
+    double proceedsPlaned=0; // Выручка планируемая
     double[] proceedsDividedPlanned = new double[]{ 1, 1, 1, 1,1,1 };
 
-    double incomePlaned=1, incomePlanedCurrentActivities=1; //Доход планируемый
+    double incomePlaned=0, incomePlanedCurrentActivities=1; //Доход планируемый
     double[] incomePercentage = new double[]{ 1, 1, 1, 1,1,1 };
 
-    public void firstSection(){
+    private void firstSection(){
         for (int i =0; i<6; i++){
             proceedsDividedPlanned[i] = ((proceedsDividedCurrent[i] * (100 + plannedIncrease[i])/100));
-            proceedsDividedPlanned[i] = round(proceedsDividedPlanned[i], 2);
+            proceedsDividedPlanned[i] = round(proceedsDividedPlanned[i]);
             proceedsPlaned += proceedsDividedPlanned[i];
         }
+        proceedsPlaned = round(proceedsPlaned);
         incomePlanedCurrentActivities = proceedsPlaned + incomeFromOtherCurrentActivities;
         incomePlaned = incomePlanedCurrentActivities + incomePlanedInvest + incomePlanedFinance;
         for (int i =0; i<6; i++){
-            incomePercentage[i] = round((proceedsDividedPlanned[i]/proceedsPlaned*100*100)/100, 2) ;
+            incomePercentage[i] = round((proceedsDividedPlanned[i]/proceedsPlaned*100*100)/100) ;
         }
 
         System.out.println("proceedsPlaned = "+proceedsPlaned+"\tincomePlaned = "+incomePlaned+"\tincomePlanedCurrentActivities = "+incomePlanedCurrentActivities);
         System.out.print("proceedsDividedPlanned= ");
-        for (int i=0;i<proceedsDividedPlanned.length;i++) System.out.print(proceedsDividedPlanned[i]+" ");
+        for (double v : proceedsDividedPlanned) System.out.print(v + " ");
         System.out.println("");
         System.out.print("incomePercentage= ");
-        for (int i=0;i<incomePercentage.length;i++) System.out.print(incomePercentage[i]+" ");
+        for (double v : incomePercentage) System.out.print(v + " ");
 
     }
 
-    public void Initialization(String pathname,int variant) throws IOException {
+    void Initialization(String pathname, int variant) throws IOException {
         int k=3;//положение колонки с которой идут цифры в методичке
         FileInputStream inputStream = new FileInputStream(new File(pathname));
         XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
