@@ -9,13 +9,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class FirstSection {
-    private static double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
 
-        BigDecimal bd = new BigDecimal(Double.toString(value));
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
-    }
     //Переменные первого раздела
     //Переменные из методички
     double[] proceedsImplementation = new double[6];
@@ -48,6 +42,14 @@ public class FirstSection {
         System.out.print("incomePercentage= ");
         for (int i=0;i<incomePercentage.length;i++) System.out.print(incomePercentage[i]+" ");
 
+    }
+
+    private static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(Double.toString(value));
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
     public void Initialization(String pathname,int variant) throws IOException {
