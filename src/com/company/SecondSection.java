@@ -10,14 +10,15 @@ public class SecondSection {
     //переменные из методички
     double[] osCostatBeginningPlannedYear = new double[6];
     String[] commissioningPlannedYear = new String[6];
+    double[] commissioningPlanned = new double[6];
     String[] decommissioningPlannedYear = new String[6];
+    double[] decommissioningPlanned = new double[6];
     //Переменные второго раздела
     double fixedAssetsPlaned, fixedAssetsThisYear, fixedAssetsNextYear, fixedAssetsInput, fixedAssetsOutput;
     double[] fixedAssetsDivided = new double[6];
     double[] fixedAssetsMonth = new double[11];
 
     public void Calculation(){
-
     }
 
     public void Initialization(String pathname,int variant) throws IOException {
@@ -42,6 +43,7 @@ public class SecondSection {
            System.out.println(workbook.getSheetAt(0).getRow(k).getCell(variant+1).getStringCellValue()); // проверка данных
            k++;
         }
+        Calculation();
     }
 }
 
