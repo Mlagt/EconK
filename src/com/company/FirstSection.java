@@ -25,13 +25,13 @@ public class FirstSection {
             proceedsDividedPlanned[i] = (proceedsDividedCurrent[i] * (100 + plannedIncrease[i]))/100;
             proceedsPlaned += proceedsDividedPlanned[i];
         }
-        incomePlanedCurrentActivities = proceedsPlaned + incomeFromOtherCurrentActivities;
+        incomePlanedCurrentActivities =  proceedsPlaned + incomeFromOtherCurrentActivities;
         incomePlaned = incomePlanedCurrentActivities + incomePlanedInvest + incomePlanedFinance;
         for (int i =0; i<6; i++){
             incomePercentage[i] = Math.round(proceedsDividedPlanned[i]/proceedsPlaned*100*100)/100 ;
         }
 
-        System.out.println("proceedsPlaned= "+proceedsPlaned+"\tincomePlaned= "+incomePlaned+"\tincomePlanedCurrentActivities"+incomePlanedCurrentActivities);
+        System.out.println("proceedsPlaned = "+proceedsPlaned+"\tincomePlaned = "+incomePlaned+"\tincomePlanedCurrentActivities = "+incomePlanedCurrentActivities);
         System.out.print("proceedsDividedPlanned= ");
         for (int i=0;i<proceedsDividedPlanned.length;i++) System.out.print(proceedsDividedPlanned[i]+" ");
         System.out.println("");
@@ -44,25 +44,21 @@ public class FirstSection {
         int k=3;//положение колонки с которой идут цифры в методичке
         FileInputStream inputStream = new FileInputStream(new File(pathname));
         XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
-        System.out.println(workbook.getSheetAt(0).getRow(3).getCell(3).getNumericCellValue());
-        System.out.println(workbook.getSheetAt(0).getRow(3).getCell(4).getStringCellValue());
-        System.out.println(workbook.getSheetAt(0).getRow(3).getCell(5).getStringCellValue());
-        System.out.println("sgserg");
         for(int i=0;i<6;i++){
            // System.out.println(workbook.getSheetAt(0).getRow(k).getCell(variant+2).getStringCellValue());
-            proceedsDividedCurrent[i] = workbook.getSheetAt(0).getRow(k).getCell(variant+2).getNumericCellValue();
-           System.out.println(workbook.getSheetAt(0).getRow(k).getCell(variant+2).getNumericCellValue()); //проверка данных
+            proceedsDividedCurrent[i] = workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();
+           System.out.println(workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue()); //проверка данных
             k++;
         }
         k++;
         for(int i=0;i<6;i++){
-            plannedIncrease[i] = workbook.getSheetAt(0).getRow(k).getCell(variant+2).getNumericCellValue();
+            plannedIncrease[i] = workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();
           System.out.println(plannedIncrease[i]); // проверка данных
             k++;
         }
-        incomePlanedInvest =  workbook.getSheetAt(0).getRow(k).getCell(variant+2).getNumericCellValue();
-        incomePlanedFinance    = workbook.getSheetAt(0).getRow(k+1).getCell(variant+2).getNumericCellValue();
-        incomeFromOtherCurrentActivities = workbook.getSheetAt(0).getRow(k+2).getCell(variant+2).getNumericCellValue();
+        incomePlanedInvest =  workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();
+        incomePlanedFinance    = workbook.getSheetAt(0).getRow(k+1).getCell(variant+1).getNumericCellValue();
+        incomeFromOtherCurrentActivities = workbook.getSheetAt(0).getRow(k+2).getCell(variant+1).getNumericCellValue();
         System.out.println(incomePlanedInvest+" "+incomePlanedFinance +" "+incomeFromOtherCurrentActivities);// проверка данных
         firstSection();
     }
