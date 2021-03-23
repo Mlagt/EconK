@@ -1,32 +1,35 @@
 package com.company;
 
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
-import org.apache.poi.ss.usermodel.Row;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
-public class ReadExcel {
+public class WorkExel {
 
-    public static void main(String[] args) throws IOException {
+    public double[] number = new double[63];
+    int i=0;
+
+    public void ReadExel(String pathname) throws IOException {
 
         // Read XSL file
-        FileInputStream inputStream = new FileInputStream(new File("D:\\project\\demo.xlsx"));
+        FileInputStream inputStream = new FileInputStream(new File(pathname));
 
         // Get the workbook instance for XLS file
         XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
 
         // Get first sheet from the workbook
         XSSFSheet sheet = workbook.getSheetAt(0);
-
+        // XSSFRow row = sheet.getRow(2);
         // Get iterator to all the rows in current sheet
         Iterator<Row> rowIterator = sheet.iterator();
+        //HSSW
 
         while (rowIterator.hasNext()) {
             Row row = rowIterator.next();
@@ -48,15 +51,10 @@ public class ReadExcel {
                         System.out.print(cell.getBooleanCellValue());
                         System.out.print("\t");
                         break;
-                    case BLANK:
-                        System.out.print("");
-                        System.out.print("\t");
-                        break;
                     case FORMULA:
                         // Formula
                         System.out.print(cell.getCellFormula());
                         System.out.print("\t");
-
                         FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
                         // Print out value evaluated by formula
                         System.out.print(evaluator.evaluate(cell).getNumberValue());
@@ -64,6 +62,8 @@ public class ReadExcel {
                     case NUMERIC:
                         System.out.print(cell.getNumericCellValue());
                         System.out.print("\t");
+                        number[i]=cell.getNumericCellValue();
+                        i++;
                         break;
                     case STRING:
                         System.out.print(cell.getStringCellValue());
@@ -79,5 +79,20 @@ public class ReadExcel {
             System.out.println("");
         }
     }
+    public void CreatExel(String sheetText,int rowParametr,int cellParametr,double[] cellValue) throws IOException {
+        Workbook wb = new XSSFWorkbook();
+        FileOutputStream fileOut = new FileOutputStream("D:\\Java\\File\\AnswerWorkbook.xlsx");
 
+        Sheet sheet = wb.createSheet(sheetText);
+        Row row = sheet.createRow(rowParametr-1);
+        Cell cell = row.createCell(cellParametr-1);
+        for (int i=0;i<cellValue.length;i++){
+            cell.setCellValue(cellValue[i]);
+            cellParametr++;
+            cell = row.createCell(cellParametr-1);
+        }
+        wb.write(fileOut);
+        fileOut.close();
+    }
 }
+
