@@ -49,19 +49,26 @@ public class SecondSection {
             }
             if (fixedAssetsInput[i][0].equals("o") && fixedAssetsOutput[i][0].equals("o")){
                 fixedAssetsDividedPlanned[i] = fixedAssetsDividedCurrent[i];
-            }else{if (fixedAssetsInput[i][0].equals("o")){
+            }else{
+                if (!fixedAssetsOutput[i][0].equals("o")){
+                    if (fixedAssetsOutput[i][2].equals("не")){
+                        fixedAssetsDividedPlanned[i] = fixedAssetsDividedCurrent[i] - Double.parseDouble(fixedAssetsOutput[i][0])/2;
+                    }else{
                 switchInput(i, fixedAssetsOutput, outputVerify);
                 fixedAssetsDividedPlannedYear[i] = fixedAssetsDividedCurrent[i] - Double.parseDouble(fixedAssetsOutput[i][0]);
-            }else if (fixedAssetsOutput[i][0].equals("o")){
+                        fixedAssetsDividedPlanned[i] = fixedAssetsByMonth(i);}
+            }else if (!fixedAssetsInput[i][0].equals("o")){
+                    if (fixedAssetsInput[i][1].equals("не")) {
+                        fixedAssetsDividedPlanned[i] = fixedAssetsDividedCurrent[i] + Double.parseDouble(fixedAssetsInput[i][0]) / 2;
+                    }else{
                 switchInput(i, fixedAssetsInput, inputVerify);
                 fixedAssetsDividedPlannedYear[i] = fixedAssetsDividedCurrent[i] + Double.parseDouble(fixedAssetsInput[i][0]);
+                    fixedAssetsDividedPlanned[i] = fixedAssetsByMonth(i);}
             }else{
                 switchInput(i, fixedAssetsOutput, outputVerify);
                 switchInput(i, fixedAssetsInput, inputVerify);
-                fixedAssetsDividedPlannedYear[i] = fixedAssetsDividedCurrent[i] + Double.parseDouble(fixedAssetsInput[i][0])-Double.parseDouble(fixedAssetsOutput[i][0]);}
-
-                    fixedAssetsDividedPlanned[i] = ((2920+2817/*fixedAssetsDividedCurrent[i]+fixedAssetsDividedPlannedYear[i]*/)/2 +
-                           fixedAssets(i, 2920/*fixedAssetsDividedCurrent[i]*/))/12;
+                fixedAssetsDividedPlannedYear[i] = fixedAssetsDividedCurrent[i] + Double.parseDouble(fixedAssetsInput[i][0])-Double.parseDouble(fixedAssetsOutput[i][0]);
+                fixedAssetsDividedPlanned[i] = fixedAssetsByMonth(i);}
 
                 }
 
@@ -125,20 +132,28 @@ public class SecondSection {
     }
 
 
-    public double fixedAssets( int o, double inp){
-    double output = inp;
-    for (int i=2; i<12; i++) {
+    private double fixedAssets(int o, double inp){
+    double output = 0;
+    double add = inp;
+    for (int i=1; i<12; i++) {
         if (fixedAssetsInput[o][0].equals("o")) {
-            output += inp - 103 * outputVerify[i];
+            add +=  - 103 * outputVerify[i];
+            output +=  + add;
         }else if (fixedAssetsOutput[o][0].equals("o")){
-        output +=inp + Double.parseDouble(fixedAssetsInput[o][0]) * inputVerify[i];
+        add +=  + Double.parseDouble(fixedAssetsInput[o][0]) * inputVerify[i];
+            output +=  + add;
             }
-
-        else {output += inp+ Double.parseDouble(fixedAssetsInput[o][0]) * inputVerify[i]- Double.parseDouble(fixedAssetsOutput[o][0]) * outputVerify[i];
+        else {add +=  + Double.parseDouble(fixedAssetsInput[o][0]) * inputVerify[i]- Double.parseDouble(fixedAssetsOutput[o][0]) * outputVerify[i];
+            output +=  + add;
             }
         System.out.println(inputVerify[i]);
         System.out.println(outputVerify[i]);
     }
 
     return output;
-}} //метод подсчета ОС по месяцам НЕ РАБОАЕТ
+} //метод подсчета ОС по месяцам РАБОTАЕТ !!
+
+private double fixedAssetsByMonth(int o){
+    return ((fixedAssetsDividedCurrent[o]+fixedAssetsDividedPlannedYear[o])/2 +
+            fixedAssets(o, fixedAssetsDividedCurrent[o]))/12;
+}}

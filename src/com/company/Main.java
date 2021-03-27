@@ -5,7 +5,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        String path = "C:\\Users\\zetzp\\Desktop\\project\\Data1.xlsx";
+        String path = "C:\\Users\\ztpze\\Downloads\\Data1 (1).xlsx";
         int variant = 9;
 
 
