@@ -12,9 +12,11 @@ public class Main {
 
 
 
-        //FirstSection firstSection = new FirstSection();
-        //firstSection.Initialization(path,variant);
+        FirstSection firstSection = new FirstSection();
+        firstSection.Initialization(path,variant);
         SecondSection secondSection = new SecondSection();
         secondSection.Initialization(path, variant);
+        ThirdSection thirdSection = new ThirdSection();
+        thirdSection.Initialization(path, variant);
     }
 }

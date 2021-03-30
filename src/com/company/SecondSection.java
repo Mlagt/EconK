@@ -54,19 +54,19 @@ public class SecondSection {
                     if (fixedAssetsOutput[i][2].equals("не")){
                         fixedAssetsDividedPlanned[i] = fixedAssetsDividedCurrent[i] - Double.parseDouble(fixedAssetsOutput[i][0])/2;
                     }else{
-                switchInput(i, fixedAssetsOutput, outputVerify);
+                        switchAssets(i, fixedAssetsOutput, outputVerify);
                 fixedAssetsDividedPlannedYear[i] = fixedAssetsDividedCurrent[i] - Double.parseDouble(fixedAssetsOutput[i][0]);
                         fixedAssetsDividedPlanned[i] = fixedAssetsByMonth(i);}
             }else if (!fixedAssetsInput[i][0].equals("o")){
                     if (fixedAssetsInput[i][1].equals("не")) {
                         fixedAssetsDividedPlanned[i] = fixedAssetsDividedCurrent[i] + Double.parseDouble(fixedAssetsInput[i][0]) / 2;
                     }else{
-                switchInput(i, fixedAssetsInput, inputVerify);
+                        switchAssets(i, fixedAssetsInput, inputVerify);
                 fixedAssetsDividedPlannedYear[i] = fixedAssetsDividedCurrent[i] + Double.parseDouble(fixedAssetsInput[i][0]);
                     fixedAssetsDividedPlanned[i] = fixedAssetsByMonth(i);}
             }else{
-                switchInput(i, fixedAssetsOutput, outputVerify);
-                switchInput(i, fixedAssetsInput, inputVerify);
+                    switchAssets(i, fixedAssetsOutput, outputVerify);
+                    switchAssets(i, fixedAssetsInput, inputVerify);
                 fixedAssetsDividedPlannedYear[i] = fixedAssetsDividedCurrent[i] + Double.parseDouble(fixedAssetsInput[i][0])-Double.parseDouble(fixedAssetsOutput[i][0]);
                 fixedAssetsDividedPlanned[i] = fixedAssetsByMonth(i);}
 
@@ -79,7 +79,7 @@ public class SecondSection {
         System.out.println(fixedAssetsPlaned);
     }
 
-    private void switchInput(int i, String[][] fixedAssetsInput, int[] inputVerify) {
+    public void switchAssets(int i, String[][] fixedAssetsInput, int[] inputVerify) {
         switch (fixedAssetsInput[i][2]){
            case  "1":
             case "марта":
@@ -137,7 +137,7 @@ public class SecondSection {
     double add = inp;
     for (int i=1; i<12; i++) {
         if (fixedAssetsInput[o][0].equals("o")) {
-            add +=  - 103 * outputVerify[i];
+            add +=  - Double.parseDouble(fixedAssetsOutput[o][0]) * outputVerify[i];
             output +=  + add;
         }else if (fixedAssetsOutput[o][0].equals("o")){
         add +=  + Double.parseDouble(fixedAssetsInput[o][0]) * inputVerify[i];
@@ -146,8 +146,8 @@ public class SecondSection {
         else {add +=  + Double.parseDouble(fixedAssetsInput[o][0]) * inputVerify[i]- Double.parseDouble(fixedAssetsOutput[o][0]) * outputVerify[i];
             output +=  + add;
             }
-        System.out.println(inputVerify[i]);
-        System.out.println(outputVerify[i]);
+        //System.out.println(inputVerify[i]);
+        //System.out.println(outputVerify[i]);
     }
 
     return output;
@@ -156,4 +156,58 @@ public class SecondSection {
 private double fixedAssetsByMonth(int o){
     return ((fixedAssetsDividedCurrent[o]+fixedAssetsDividedPlannedYear[o])/2 +
             fixedAssets(o, fixedAssetsDividedCurrent[o]))/12;
-}}
+}
+
+    public void switchHumans( String[] fixedAssetsInput, int[] inputVerify) {
+        switch (fixedAssetsInput[2]){
+            case  "1":
+            case "марта":
+            case "феврале":
+                inputVerify[2] = 1;
+                break;
+            case "2":
+            case "июня":
+            case "мае":
+                inputVerify[5] = 1;
+                break;
+            case "3":
+            case "сентября":
+            case "августе":
+                inputVerify[8] =1;
+                break;
+            case "4":
+            case "декабря":
+            case "ноябре":
+                inputVerify[11] = 1;
+                break;
+            case "февраля":
+                inputVerify[1] = 1;
+                break;
+            case "марте":
+            case "апреля":
+                inputVerify[3] = 1;
+                break;
+            case "апреле":
+            case "мая":
+                inputVerify[4] = 1;
+                break;
+            case "июне":
+            case "июля":
+                inputVerify[6] = 1;
+                break;
+            case "июле":
+            case "августа":
+                inputVerify[7] = 1;
+                break;
+            case "сентябре":
+            case "октября":
+                inputVerify[9] = 1;
+                break;
+            case "октябре":
+            case "ноября":
+                inputVerify[10] = 1;
+                break;
+        }
+    }
+
+}

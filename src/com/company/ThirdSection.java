@@ -11,9 +11,10 @@ import java.math.RoundingMode;
 public class ThirdSection {
     //переменные из файла
     double[] usefulLife = new double[6];
+    double numberEmployersCurrentYear;
     double numberEmployeesPlannedYear;
-    String plannedIncreasEemployees;
-    String plannedReductionEmployees;
+    String[] plannedIncreaseEmployees = new String[4];
+    String[] plannedReductionEmployees = new String[4];
     double averageMonthWagesYear;
     double plannedGrowthRateAverageWeages;
     double[] materialCostsCurrentYear = new double[3];
@@ -22,7 +23,7 @@ public class ThirdSection {
     //Переменные третьего раздела
     double laborCosts, peoplePlaned, peopleCurrent, salaryPlaned, salaryCurrent, salaryGrowth;
     double socialContributions;
-    double depreciationAmount;
+    double depreciationAmount = 0;
     double[] depreciationNorm = new double[6];
     double[] depreciationDivided = new double[6];
     double materialContributions100Planned, materialContributions100Current;
@@ -33,15 +34,27 @@ public class ThirdSection {
     double[] costsAmountDivided = new double[5];
     double[] costPrice100Divided = new double[5];
 
+
     FirstSection firstSection;
     SecondSection secondSection;
 
     private void Calculation() {
         firstSection = new FirstSection();
         secondSection = new SecondSection();
+        if (plannedReductionEmployees[0].equals("o")&&plannedIncreaseEmployees[0].equals("o")) {
+            numberEmployeesPlannedYear = numberEmployersCurrentYear;
+        }else{ if(!plannedReductionEmployees[0].equals("o")&&!plannedIncreaseEmployees[0].equals("o")){
+            secondSection.switchHumans(plannedIncreaseEmployees, secondSection.inputVerify);
+            secondSection.switchHumans(plannedReductionEmployees, secondSection.outputVerify);
+        }else{ if(!plannedIncreaseEmployees[0].equals("o")) secondSection.switchHumans(plannedIncreaseEmployees, secondSection.inputVerify);
+        if(!plannedReductionEmployees[0].equals("o")) secondSection.switchHumans(plannedReductionEmployees, secondSection.outputVerify);}}
+
+        numberEmployeesPlannedYear = humansPlanned(numberEmployersCurrentYear);
+        System.out.println("Число хуманов равно "+ numberEmployersCurrentYear);
+
         salaryPlaned = averageMonthWagesYear*plannedGrowthRateAverageWeages/100;
-       // peoplePlaned //подсчет числиности людей
-        laborCosts = peoplePlaned*salaryPlaned*12;     //ЗОТ
+
+        laborCosts = round(numberEmployersCurrentYear*salaryPlaned*12/1000, 2);     //ЗОТ
         socialContributions = laborCosts*34/100;       //ОСН
         for (int i=0;i<depreciationNorm.length;i++){
             depreciationNorm[i]=round(1/usefulLife[i]*100,2);
@@ -71,10 +84,10 @@ public class ThirdSection {
 
         System.out.println("----------Ответы 3 раздел----------");
         System.out.println("Зон = "+ laborCosts);
-        System.out.println("осн = "+ laborCosts);
-        System.out.println("А = "+ laborCosts);
-        System.out.println("МЗ = "+ laborCosts);
-        System.out.println("З = "+ laborCosts);
+        System.out.println("осн = "+ socialContributions);
+        System.out.println("А = "+ depreciationAmount);
+        System.out.println("МЗ = "+ materialContributionsAmount);
+        System.out.println("З = "+ otherCostsPlaned);
         System.out.print("costPrice100Divided= ");
         for (int i=0;i<costPrice100Divided.length;i++) System.out.print(costPrice100Divided[i]+" ");System.out.println("");
         System.out.print("costsAmountDivided= ");
@@ -102,11 +115,11 @@ public class ThirdSection {
             System.out.println(usefulLife[i]); //проверка данных
             k++;
         }
-        numberEmployeesPlannedYear = workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();k++;
+        numberEmployersCurrentYear = workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();k++;
         System.out.println(numberEmployeesPlannedYear);
-        plannedIncreasEemployees =  workbook.getSheetAt(0).getRow(k).getCell(variant+1).getStringCellValue();k++;
-        plannedReductionEmployees =  workbook.getSheetAt(0).getRow(k).getCell(variant+1).getStringCellValue();k++;
-        System.out.println( plannedIncreasEemployees+ " " + plannedReductionEmployees);
+        plannedIncreaseEmployees =  workbook.getSheetAt(0).getRow(k).getCell(variant+1).getStringCellValue().split(" ");k++;
+        plannedReductionEmployees =  workbook.getSheetAt(0).getRow(k).getCell(variant+1).getStringCellValue().split(" ");k++;
+        System.out.println( plannedIncreaseEmployees+ " " + plannedReductionEmployees);
         averageMonthWagesYear  = workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();k++;
         plannedGrowthRateAverageWeages = workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();k++;
         System.out.println( averageMonthWagesYear+ " " + plannedGrowthRateAverageWeages);
@@ -123,9 +136,26 @@ public class ThirdSection {
         }
         otherProductionCosts  = workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();
         System.out.println( otherProductionCosts);
+
         Calculation();
     }
 
+    private double humansPlanned(double inp){
+        double output = inp;
 
+        for (int i=1; i<12; i++) {
+            if (plannedIncreaseEmployees[0].equals("o")) {
+                output += - Double.parseDouble(plannedReductionEmployees[0]) * secondSection.outputVerify[i];
 
+            }else if (plannedReductionEmployees[0].equals("o")){
+                output +=  + Double.parseDouble(plannedIncreaseEmployees[0]) * secondSection.inputVerify[i];
+
+            }
+            else {output +=  + Double.parseDouble(plannedIncreaseEmployees[0]) * secondSection.inputVerify[i]- Double.parseDouble(plannedReductionEmployees[0]) * secondSection.outputVerify[i];
+
+            }
+            //System.out.println(inputVerify[i]);
+            //System.out.println(outputVerify[i]);
+        }
+    return output;}
 }
