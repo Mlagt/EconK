@@ -52,14 +52,14 @@ public class SecondSection {
             }else{
                 if (!fixedAssetsOutput[i][0].equals("o")){
                     if (fixedAssetsOutput[i][2].equals("не")){
-                        fixedAssetsDividedPlanned[i] = fixedAssetsDividedCurrent[i] - Double.parseDouble(fixedAssetsOutput[i][0])/2;
+                        fixedAssetsDividedPlanned[i] = FirstSection.round(fixedAssetsDividedCurrent[i] - Double.parseDouble(fixedAssetsOutput[i][0])/2);
                     }else{
                         switchAssets(i, fixedAssetsOutput, outputVerify);
                 fixedAssetsDividedPlannedYear[i] = fixedAssetsDividedCurrent[i] - Double.parseDouble(fixedAssetsOutput[i][0]);
                         fixedAssetsDividedPlanned[i] = fixedAssetsByMonth(i);}
             }else if (!fixedAssetsInput[i][0].equals("o")){
-                    if (fixedAssetsInput[i][1].equals("не")) {
-                        fixedAssetsDividedPlanned[i] = fixedAssetsDividedCurrent[i] + Double.parseDouble(fixedAssetsInput[i][0]) / 2;
+                    if (fixedAssetsInput[i][2].equals("не")) {
+                        fixedAssetsDividedPlanned[i] = FirstSection.round(fixedAssetsDividedCurrent[i] + Double.parseDouble(fixedAssetsInput[i][0]) / 2);
                     }else{
                         switchAssets(i, fixedAssetsInput, inputVerify);
                 fixedAssetsDividedPlannedYear[i] = fixedAssetsDividedCurrent[i] + Double.parseDouble(fixedAssetsInput[i][0]);
@@ -74,7 +74,7 @@ public class SecondSection {
 
             fixedAssetsPlaned += fixedAssetsDividedPlanned[i];
             System.out.println(fixedAssetsDividedPlanned[i]);
-            System.out.println(fixedAssetsDividedPlannedYear[i]);
+            //System.out.println(fixedAssetsDividedPlannedYear[i]);
         }
         System.out.println(fixedAssetsPlaned);
     }
@@ -150,7 +150,7 @@ public class SecondSection {
         //System.out.println(outputVerify[i]);
     }
 
-    return output;
+    return FirstSection.round(output);
 } //метод подсчета ОС по месяцам РАБОTАЕТ !!
 
 private double fixedAssetsByMonth(int o){
