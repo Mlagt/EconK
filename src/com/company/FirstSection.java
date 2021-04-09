@@ -9,6 +9,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 class FirstSection {
+
+
+
     public static double round(double value) {
         if (2 < 0) throw new IllegalArgumentException();
 

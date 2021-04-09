@@ -49,7 +49,7 @@ public class ThirdSection {
         if(!plannedReductionEmployees[0].equals("o")) secondSection.switchHumans(plannedReductionEmployees, secondSection.outputVerify);}}
 
         numberEmployeesPlannedYear = humansPlanned(numberEmployersCurrentYear);
-        System.out.println("Число хуманов равно "+ numberEmployersCurrentYear);
+        System.out.println("Число хуманов равно "+ numberEmployeesPlannedYear);
 
         salaryPlaned = averageMonthWagesYear*plannedGrowthRateAverageWeages/100;
 
@@ -147,11 +147,17 @@ public class ThirdSection {
     private double humansPlanned(double inp){
         double output = inp;
 
-        for (int i=1; i<12; i++) {
+        for (int i=0; i<12; i++) {
             if (plannedIncreaseEmployees[0].equals("o")) {
+                if (plannedReductionEmployees[2].equals("не")){
+                output += - Double.parseDouble(plannedReductionEmployees[0])/2;
+            } else
                 output += - Double.parseDouble(plannedReductionEmployees[0]) * secondSection.outputVerify[i];
 
             }else if (plannedReductionEmployees[0].equals("o")){
+                if (plannedIncreaseEmployees[2].equals("не")){
+                    output += - Double.parseDouble(plannedIncreaseEmployees[0])/2;}
+                else
                 output +=  + Double.parseDouble(plannedIncreaseEmployees[0]) * secondSection.inputVerify[i];
 
             }

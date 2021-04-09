@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class SecondSection {
+class SecondSection {
     //переменные из методички
 
     //Переменные второго раздела
@@ -161,21 +161,29 @@ private double fixedAssetsByMonth(int o){
     public void switchHumans( String[] fixedAssetsInput, int[] inputVerify) {
         switch (fixedAssetsInput[2]){
             case  "1":
+                inputVerify[0] = (int) 3.5;
+                break;
             case "марта":
             case "феврале":
                 inputVerify[2] = 1;
                 break;
             case "2":
+                inputVerify[0] = (int) 2.5;
+                break;
             case "июня":
             case "мае":
                 inputVerify[5] = 1;
                 break;
             case "3":
+                inputVerify[0] = (int) 1.5;
+                break;
             case "сентября":
             case "августе":
                 inputVerify[8] =1;
                 break;
             case "4":
+                inputVerify[0] = (int) 0.5;
+                break;
             case "декабря":
             case "ноябре":
                 inputVerify[11] = 1;

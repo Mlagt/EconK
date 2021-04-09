@@ -21,16 +21,16 @@ public class ForthSection {
     FirstSection firstSection;
     ThirdSection thirdSection;
 
-    private void Calculation() {
+    private void Calculation(String path, int variant) {
         firstSection = new FirstSection();
         try {
-            firstSection.Initialization("D:\\Java\\File\\Data1.xlsx",2);
+            firstSection.Initialization(path,variant);
         } catch (IOException e) {
             e.printStackTrace();
         }
         thirdSection = new ThirdSection();
         try {
-            thirdSection.Initialization("D:\\Java\\File\\Data1.xlsx",2);
+            thirdSection.Initialization(path,variant);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,15 +70,19 @@ public class ForthSection {
     public void Initialization(String pathname,int variant) throws IOException {
         int k=61;//положение колонки с которой идут цифры в методичке
         FileInputStream inputStream = new FileInputStream(new File(pathname));
-        XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
-        preferentialProfit = workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();k++;
-        System.out.println(preferentialProfit);
-        expensesOtherCurrentActivities  = workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();k++;
-        financeExpenses = workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();k++;
-        System.out.println( expensesOtherCurrentActivities+ " " + financeExpenses);
-        investmentExpenses  = workbook.getSheetAt(0).getRow(k).getCell(variant+1).getNumericCellValue();
+        try (XSSFWorkbook workbook = new XSSFWorkbook(inputStream)) {
+            preferentialProfit = workbook.getSheetAt(0).getRow(k).getCell(variant + 1).getNumericCellValue();
+            k++;
+            System.out.println(preferentialProfit);
+            expensesOtherCurrentActivities = workbook.getSheetAt(0).getRow(k).getCell(variant + 1).getNumericCellValue();
+            k++;
+            financeExpenses = workbook.getSheetAt(0).getRow(k).getCell(variant + 1).getNumericCellValue();
+            k++;
+            System.out.println(expensesOtherCurrentActivities + " " + financeExpenses);
+            investmentExpenses = workbook.getSheetAt(0).getRow(k).getCell(variant + 1).getNumericCellValue();
+        }
         System.out.println( investmentExpenses);
-        Calculation();
+        Calculation(pathname, variant);
     }
 
 
